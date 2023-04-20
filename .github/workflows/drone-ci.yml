@@ -1,0 +1,23 @@
+name: drone-ci
+
+on:
+  push:  
+  workflow_dispatch: # manual trigger
+
+jobs:
+  drone-ci:
+    runs-on: ubuntu-latest
+    if: ${{ github.actor != 'dependabot[bot]' }}
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up Homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Install HomeBrew tools
+        run: brew bundle
+
+      - name: Run drone-cli
+        run: make
