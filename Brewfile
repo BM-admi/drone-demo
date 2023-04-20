@@ -1,2 +1,2 @@
 # brew bundle
-tap "drone-cli"
+brew "drone-cli"
